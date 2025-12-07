@@ -1,4 +1,4 @@
-# obs — Local Observability Stack with Terraform
+# Obs — Local Observability Stack with Terraform
 
 This project provisions a local observability/dev stack on your machine using Terraform. You can deploy to either:
 - Local Docker engine (containers), or
