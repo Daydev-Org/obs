@@ -1,4 +1,4 @@
-# tf_playground — Local Observability Stack with Terraform
+# obs — Local Observability Stack with Terraform
 
 This project provisions a local observability/dev stack on your machine using Terraform. You can deploy to either:
 - Local Docker engine (containers), or
@@ -65,6 +65,7 @@ Docker mode (direct):
 - LocalStack: http://localhost:4566
 - Prometheus: http://localhost:9090
 - Grafana: http://localhost:3000 (admin / your password)
+- MongoDB: mongodb://localhost:27017
 
 Kubernetes mode (port-forward examples):
 ```
@@ -88,6 +89,14 @@ Fix:
 2. Upgrade provider plugins:
    - `terraform init -upgrade`
 3. If needed, set `DOCKER_API_VERSION` to match your daemon (see `docker version`).
+
+If not working, try setting version as follows:
+```
+docker = {
+    source  = "kreuzwerker/docker"
+    version = "~> 3.6.2"
+}
+```
 
 ### Kubernetes context
 Ensure `kubectl config current-context` matches `var.k8s_context` (default `docker-desktop`). Adjust via `-var k8s_context=...`.
