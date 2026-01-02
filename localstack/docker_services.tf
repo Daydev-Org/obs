@@ -181,18 +181,37 @@ resource "docker_container" "grafana" {
 ############
 # MongoDB  #
 ############
-resource "docker_image" "mongo" {
+# resource "docker_image" "mongo" {
+#   count = var.deploy_to_docker ? 1 : 0
+#   name = "mongo:latest"
+# }
+#
+# resource "docker_container" "mongo" {
+#   count = var.deploy_to_docker ? 1 : 0
+#   name = "ds-mongodb"
+#   image = docker_image.mongo[0].name
+#
+#   ports {
+#     internal = 27017
+#     external = 27017
+#   }
+# }
+
+#############
+# ScyllaDB  #
+#############
+resource "docker_image" "scylla" {
   count = var.deploy_to_docker ? 1 : 0
-  name = "mongo:latest"
+  name  = "scylladb/scylla:6.2.1"
 }
 
-resource "docker_container" "mongo" {
+resource "docker_container" "scylla" {
   count = var.deploy_to_docker ? 1 : 0
-  name = "ds-mongodb"
-  image = docker_image.mongo[0].name
+  name  = "ds-scylladb"
+  image = docker_image.scylla[0].name
 
   ports {
-    internal = 27017
-    external = 27017
+    internal = 9042
+    external = 9042
   }
 }

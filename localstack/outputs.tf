@@ -8,7 +8,8 @@ output "docker_endpoints" {
     localstack  = "http://localhost:4566"
     prometheus  = "http://localhost:9090"
     grafana     = "http://localhost:3000"
-    mongo       = "mongodb://localhost:27017"
+    //mongo       = "mongodb://localhost:27017"
+    scylla      = "localhost:9042"
   } : null
 }
 
